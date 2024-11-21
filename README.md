@@ -2,9 +2,12 @@
 
 # R code to break camera trap videos into images
 
-This R code processes videos recorded by camera traps to extract frames, rename the frames, and update their metadata to reflect the correct capture timestamps based on the video's metadata.
+This R code processes videos recorded by camera traps to: 
 
-Here's a step-by-step breakdown of what the code does:
+1. Extracts one frame per second as images.
+2. Renames and organizes these images.
+3. Corrects their metadata timestamps to reflect the accurate capture time.
+4. Cleans up intermediate files to maintain a tidy workspace.
 
 ```R 
 ## loading packages
