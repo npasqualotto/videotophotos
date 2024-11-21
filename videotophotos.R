@@ -4,11 +4,11 @@ library(exiftoolr)
 library(filesstrings)
 
 ## setting your main directory (folder of your camera trap project)
-# in my exemplo, it's gonna be folder 'project_yyy'
+# here, let's work with 'project_yyy' folder stored in this repository
 main_dir <- "./project_yyy"
 
 # getting paths with videos
-# bushnell model 119949C creates video files with '.MOV' extension
+# camera traps (bushnell model 119949C) create video files with '.MOV' extension
 all_paths <- list.dirs(main_dir, full.names = T, recursive= T)
 video_paths <- list.files(path = all_paths, pattern = "\\.MOV$", full.names = T)
 
