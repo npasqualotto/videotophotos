@@ -2,7 +2,7 @@
 
 # R code to break camera trap videos into images (.jpg files)
 
-[Explain in more details what my code do...]
+[Explain in more details how my code works ...]
 
 ``` {r} 
 ## loading packages
