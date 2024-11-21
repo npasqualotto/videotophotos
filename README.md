@@ -1,6 +1,6 @@
 <p xmlns:cc="http://creativecommons.org/ns#" >This work is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""></a></p>
 
-# R code to break camera trap videos into images (.jpg files)
+# R code to break camera trap videos into images
 
 [Explain in more details how my code works ...]
 
@@ -14,19 +14,19 @@ library(filesstrings)
 ``` {r} 
 ## setting your main directory (folder of your camera trap project)
 # here, let's work with 'project_yyy' stored in this repository
-main_dir <- "./project_yyy"
+> main_dir <- "./project_yyy"
 ```
 
 ``` {r} 
 # getting paths with videos
 # camera traps (bushnell model 119949C) create video files with '.MOV' extension
-all_paths <- list.dirs(main_dir, full.names = T, recursive= T)
-video_paths <- list.files(path = all_paths, pattern = "\\.MOV$", full.names = T)
+> all_paths <- list.dirs(main_dir, full.names = T, recursive= T)
+> video_paths <- list.files(path = all_paths, pattern = "\\.MOV$", full.names = T)
 ```
 
 ``` {r} 
 # getting all video file names
-videos_names <- basename(video_paths)
+> videos_names <- basename(video_paths)
 ```
 # 1st loop corresponds to one iteration for each video
 for (i in 1:length(video_paths)) {
