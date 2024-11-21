@@ -3,7 +3,7 @@ library(av)
 library(exiftoolr)
 library(filesstrings)
 
-## definig your main directory (folder you stored all camera trap videos)
+## setting your main directory (folder of your camera trap project)
 # in my exemplo, it's gonna be folder 'project_yyy'
 main_dir <- "./project_yyy"
 
