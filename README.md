@@ -32,17 +32,21 @@ videos_names <- basename(video_paths)
 ```
 
 ```R
-# 1st loop corresponds to one iteration for each video
+# loop through each video
 for (i in 1:length(video_paths)) {
   # extracting imgs from video (1 frame per second)
   # storing new images in a temporary folder
   av_video_images(video_paths[i], destdir = paste0(dirname(video_paths[i]), "/temp"), format = "jpg", fps = 1)
+  
   # listing new image paths
   newimg_paths <- list.files(paste0(dirname(video_paths[i]), "/temp"), full.names = T)
+ 
   # rename new images based on the video they came from
   file.rename(newimg_paths, sub('/temp/', paste0('/temp/', sub('\\.MOV$', '', videos_names[i]), "_"), newimg_paths))
+  
   # extracting original date and time from video
   exifinfo_video <- exif_read(video_paths[i], tags = c("FileName", "CreateDate", "MediaDuration"))
+  
   # creating corrected date and time based on video metadata info
   # first, let's create a character vector by repeating date and time of the video with same lenght as number of imgs extracted from it
   # the repeated date and time obtained from 'CreateDate' metadata field correspond to the video first instant
@@ -53,20 +57,24 @@ for (i in 1:length(video_paths)) {
   correct_dates <- rep(exifinfo_video$CreateDate, length(newimg_paths))
   correct_dates <- (as.POSIXct(correct_dates, tz = "America/Sao_Paulo", format='%Y:%m:%d %H:%M:%S'))
   correct_dates <- correct_dates + seq(0, length(newimg_paths)-1)
+  
   # updating (renamed) image paths
   newimg_paths <- list.files(paste0(dirname(video_paths[i]), "/temp"), full.names = T)
-  # nestled loop to correct date and time of each image from 1st video 
+  
+  # loop through images extracted from a given video to correct their date and time 
   for (j in 1:length(newimg_paths)) {
     exif_call(args = paste0("-CreateDate=\"", correct_dates[j], "\""), path= newimg_paths[j])
   }
+  
   # print image paths and their corrected dates in R console
   print(exif_read(newimg_paths, tags = c("filename", "CreateDate")))
+  
   # moving corrected images to the directory where videos are stored
   move_files(newimg_paths, dirname(video_paths[i]))
+  
   # deleting temp folder after each i cycle
   dirs <- list.dirs(main_dir)
   temp_dir <- dirs[grep("temp", dirs)]
   unlink(temp_dir, recursive = T)
 }
-```
 ```

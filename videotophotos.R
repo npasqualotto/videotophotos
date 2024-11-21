@@ -15,7 +15,7 @@ video_paths <- list.files(path = all_paths, pattern = "\\.MOV$", full.names = T)
 # getting all video file names
 videos_names <- basename(video_paths)
 
-# 1st loop corresponds to one iteration for each video
+# Loop through each video
 for (i in 1:length(video_paths)) {
   # extracting imgs from video (1 frame per second)
   # storing new images in a temporary folder
@@ -38,7 +38,7 @@ for (i in 1:length(video_paths)) {
   correct_dates <- correct_dates + seq(0, length(newimg_paths)-1)
   # updating (renamed) image paths
   newimg_paths <- list.files(paste0(dirname(video_paths[i]), "/temp"), full.names = T)
-  # nestled loop to correct date and time of each image from 1st video 
+  # loop through images extracted from a given video to correct their date and time 
   for (j in 1:length(newimg_paths)) {
     exif_call(args = paste0("-CreateDate=\"", correct_dates[j], "\""), path= newimg_paths[j])
   }
