@@ -9,19 +9,25 @@
 library(av)
 library(exiftoolr)
 library(filesstrings)
+```
 
+``` {r} 
 ## setting your main directory (folder of your camera trap project)
 # here, let's work with 'project_yyy' stored in this repository
 main_dir <- "./project_yyy"
+```
 
+``` {r} 
 # getting paths with videos
 # camera traps (bushnell model 119949C) create video files with '.MOV' extension
 all_paths <- list.dirs(main_dir, full.names = T, recursive= T)
 video_paths <- list.files(path = all_paths, pattern = "\\.MOV$", full.names = T)
+```
 
+``` {r} 
 # getting all video file names
 videos_names <- basename(video_paths)
-
+```
 # 1st loop corresponds to one iteration for each video
 for (i in 1:length(video_paths)) {
   # extracting imgs from video (1 frame per second)
