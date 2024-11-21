@@ -3,8 +3,10 @@
 # R code to break videos from camera trap intro images
 
 ## loading packages
-``` {r} library(av)
+``` {r} 
+library(av)
 library(exiftoolr)
-library(filesstrings)```
+library(filesstrings)
+```
 
 ## setting your main directory (folder of your camera trap project)
